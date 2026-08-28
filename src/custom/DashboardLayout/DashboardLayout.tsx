@@ -27,6 +27,12 @@ export interface DashboardLayoutProps {
 
   /** Optional fixed height for the sticky sidebar. Defaults to 100vh */
   sidebarHeight?: string | number;
+
+  /** Background color for the mobile bottom sheet header */
+  headerBackgroundColor?: string;
+
+  /** Text color for the mobile bottom sheet header */
+  headerTextColor?: string;
 }
 
 export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
@@ -36,7 +42,9 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
   sidebarTitle = 'Widget Picker',
   sidebarWidth = { xs: '100%', md: '350px' },
   sidebarTopOffset = '0',
-  sidebarHeight = '100vh'
+  sidebarHeight = '100vh',
+  headerBackgroundColor,
+  headerTextColor
 }) => {
   const theme = useTheme();
   // We use the 'md' breakpoint (900px default) to switch between mobile and desktop layout
@@ -76,6 +84,8 @@ export const DashboardLayout: React.FC<DashboardLayoutProps> = ({
             onClose={() => setIsSheetVisible(false)}
             title={sidebarTitle}
             maxHeight="50vh"
+            headerBackgroundColor={headerBackgroundColor}
+            headerTextColor={headerTextColor}
           >
             {sidebarContent}
           </BottomSheet>
