@@ -59,54 +59,50 @@ const BottomSheet = ({
       })}
     >
       {title && (
-        <>
-          <Box
+        <Box
+          sx={(theme) => ({
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            padding: '1rem',
+            textAlign: 'center',
+            background: headerBackgroundColor || theme.palette.background.default,
+            color: headerTextColor || theme.palette.text.primary
+          })}
+        >
+          <Typography
+            id={titleId}
+            variant="subtitle1"
+            sx={{
+              fontWeight: 600,
+              flex: 1,
+              minWidth: 0,
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              whiteSpace: 'nowrap',
+              color: 'inherit'
+            }}
+          >
+            {title}
+          </Typography>
+          <IconButton
+            aria-label={closeButtonAriaLabel}
+            onClick={onClose}
+            size="small"
+            edge="end"
             sx={(theme) => ({
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              padding: '1rem',
-              textAlign: 'center',
-              background: headerBackgroundColor || theme.palette.surface.tint,
-              color: headerTextColor || theme.palette.text.primary
+              color: headerTextColor || theme.palette.text.primary,
+              transform: 'rotate(-90deg)',
+              '&:hover': {
+                transform: 'rotate(90deg)',
+                transition: 'all 0.3s ease-in',
+                cursor: 'pointer'
+              }
             })}
           >
-            <Typography
-              id={titleId}
-              variant="subtitle1"
-              sx={{
-                fontWeight: 600,
-                flex: 1,
-                minWidth: 0,
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                whiteSpace: 'nowrap',
-                color: 'inherit'
-              }}
-            >
-              {title}
-            </Typography>
-            <IconButton
-              aria-label={closeButtonAriaLabel}
-              onClick={onClose}
-              size="small"
-              edge="end"
-              sx={(theme) => ({
-                '& svg': {
-                  fill: headerTextColor || theme.palette.text.primary
-                },
-                transform: 'rotate(-90deg)',
-                '&:hover': {
-                  transform: 'rotate(90deg)',
-                  transition: 'all 0.3s ease-in',
-                  cursor: 'pointer'
-                }
-              })}
-            >
-              <CloseIcon />
-            </IconButton>
-          </Box>
-        </>
+            <CloseIcon />
+          </IconButton>
+        </Box>
       )}
       <DialogContent sx={{ px: 2, py: 1.5, overflowY: 'auto' }}>{children}</DialogContent>
     </Dialog>
