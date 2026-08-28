@@ -66,7 +66,9 @@ const BottomSheet = ({
             alignItems: 'center',
             padding: '1rem',
             textAlign: 'center',
-            background: headerBackgroundColor || theme.palette.background.default,
+            // Use surface.tint (Sistent token) when available, fall back to
+            // background.default (standard MUI token) for repos without SistentThemeProvider.
+            background: headerBackgroundColor || theme.palette.surface?.tint || theme.palette.background.default,
             color: headerTextColor || theme.palette.text.primary
           })}
         >
