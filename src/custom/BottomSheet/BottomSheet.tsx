@@ -67,8 +67,8 @@ const BottomSheet = ({
               alignItems: 'center',
               padding: '1rem',
               textAlign: 'center',
-              background: headerBackgroundColor || theme.palette.surface.tint,
-              color: headerTextColor || theme.palette.text.primary
+              background: headerBackgroundColor || theme.palette.surface?.tint || theme.palette.background.default,
+              color: headerTextColor || (theme.palette.surface?.tint ? theme.palette.common.white : theme.palette.text.primary)
             })}
           >
             <Typography
@@ -93,7 +93,7 @@ const BottomSheet = ({
               edge="end"
               sx={(theme) => ({
                 '& svg': {
-                  fill: headerTextColor || theme.palette.text.primary
+                  fill: headerTextColor || (theme.palette.surface?.tint ? theme.palette.common.white : theme.palette.text.primary)
                 },
                 transform: 'rotate(-90deg)',
                 '&:hover': {
