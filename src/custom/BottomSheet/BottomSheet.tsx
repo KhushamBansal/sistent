@@ -1,5 +1,5 @@
 import Slide, { SlideProps } from '@mui/material/Slide';
-import { useTheme } from '@mui/material/styles';
+import { useTheme } from '../../theme';
 import React, { useId } from 'react';
 import { Box } from '../../base/Box';
 import { Dialog } from '../../base/Dialog';
@@ -46,7 +46,7 @@ const BottomSheet = ({
     headerBackgroundColor || tint || theme.palette.background.default;
   const usingTint = !headerBackgroundColor && Boolean(tint);
   const finalHeaderTextColor =
-    headerTextColor || (usingTint ? theme.palette.common.white : theme.palette.text.primary);
+    headerTextColor || (usingTint ? theme.palette.text.inverse : theme.palette.text.default);
 
   return (
     <Dialog
