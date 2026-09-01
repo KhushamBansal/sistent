@@ -43,7 +43,7 @@ const BottomSheet = ({
 
   const tint = theme.palette.surface?.tint;
   const finalHeaderBackgroundColor =
-    headerBackgroundColor ?? tint ?? theme.palette.background.default;
+    headerBackgroundColor || tint || theme.palette.background.default;
 
   const defaultForeground = headerBackgroundColor
     ? readableTextColor(
