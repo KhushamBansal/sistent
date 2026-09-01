@@ -1,5 +1,5 @@
 import Slide, { SlideProps } from '@mui/material/Slide';
-import { useTheme } from '../../theme';
+import { readableTextColor, useTheme } from '../../theme';
 import React, { useId } from 'react';
 import { Box } from '../../base/Box';
 import { Dialog } from '../../base/Dialog';
@@ -43,10 +43,21 @@ const BottomSheet = ({
 
   const tint = theme.palette.surface?.tint;
   const finalHeaderBackgroundColor =
-    headerBackgroundColor || tint || theme.palette.background.default;
-  const usingTint = !headerBackgroundColor && Boolean(tint);
-  const finalHeaderTextColor =
-    headerTextColor || (usingTint ? theme.palette.text.inverse : theme.palette.text.default);
+    headerBackgroundColor ?? tint ?? theme.palette.background.default;
+
+  const defaultForeground = headerBackgroundColor
+    ? readableTextColor(
+        headerBackgroundColor,
+        theme.palette.text.inverse,
+        theme.palette.text.default
+      )
+    : tint
+      ? // surface.tint is a dark gradient in both palettes, so always light ink
+        // (matches Modal / UniversalFilter tinted headers).
+        theme.palette.common.white
+      : theme.palette.text.default;
+
+  const finalHeaderTextColor = headerTextColor ?? defaultForeground;
 
   return (
     <Dialog
